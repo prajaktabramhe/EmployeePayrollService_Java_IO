@@ -25,11 +25,11 @@ public class EmployeePayrollServices
         EmployeePayrollServices employeePayrollServices = new EmployeePayrollServices(employeePayrollList);
         Scanner consoleInputReader = new Scanner(System.in);
         employeePayrollServices.readEmployeePayrollData(consoleInputReader);
-        employeePayrollServices.writeEmployeePayrollData();
+        employeePayrollServices.writeEmployeePayrollData(IOServices.CONSOLE_ID);
     }
 
 
-    private void readEmployeePayrollData(Scanner consoleInputReader)
+    public void readEmployeePayrollData(Scanner consoleInputReader)
     {
         System.out.println("Enter Employee ID:");
         int id = consoleInputReader.nextInt();
@@ -42,8 +42,11 @@ public class EmployeePayrollServices
         employeePayrollList.add(new EmployeePayrollData(id, name, salary));
     }
 
-    private void writeEmployeePayrollData()
+    void writeEmployeePayrollData(IOServices ioService)
     {
+        if (ioService.equals(IOServices.CONSOLE_ID))
         System.out.println("\n Writing Employee Payroll Roaster to Console \n" + employeePayrollList);
+    else  if (ioService.equals(IOServices.FILE_IO))
+   new EmployeePayrollFileIOServices().writeData(employeePayrollList);
     }
 }

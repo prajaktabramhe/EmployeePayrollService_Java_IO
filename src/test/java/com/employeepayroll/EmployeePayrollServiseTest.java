@@ -3,9 +3,11 @@ package com.employeepayroll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class EmployeePayrollServiseTest
@@ -56,5 +58,17 @@ public class EmployeePayrollServiseTest
                 .forEach(System.out::println);
         new EmployeeWatchServices(dir).processEvents();
 
+    }
+    @Test
+    public void given3EmployeesWhenWrittenToFileShouldMatchEmployeeEntries()
+    {
+        EmployeePayrollData[] arrayOfEmps = {
+                new EmployeePayrollData(1,"jelf Bezos", 108008.0),
+                new EmployeePayrollData(2, "Bill Gates", 208008.0),
+                new EmployeePayrollData(3, " Mark Zuckerbarg", 30800.0)
+        };
+        EmployeePayrollServices employeePayrollServices;
+        employeePayrollServices = new EmployeePayrollServices(Arrays.asList(arrayOfEmps));
+        employeePayrollServices.writeEmployeePayrollData(EmployeePayrollServices.IOServices.FILE_IO);
     }
 }
