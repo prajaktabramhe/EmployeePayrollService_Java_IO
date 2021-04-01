@@ -35,7 +35,9 @@ public class EmployeePayrollServiseTest
             Path tempFile = Paths.get(playPath + "/temp" + cntr);
             Assertions.assertTrue(Files.notExists(tempFile));
             try
-            { Files.createFile(tempFile); }
+            {
+                Files.createFile(tempFile);
+            }
             catch (IOException e) {}
             Assertions.assertTrue(Files.exists(tempFile));
         });
@@ -47,7 +49,8 @@ public class EmployeePayrollServiseTest
     }
 
     @Test
-    public void givenDirectoryWhenWatchedListTheActivities() throws IOException {
+    public void givenDirectoryWhenWatchedListTheActivities() throws IOException
+    {
         Path dir = Paths.get(HOME+ "/" + PLAY_WITH_NIO);
         Files.list(dir).filter(Files::isRegularFile)
                 .forEach(System.out::println);
