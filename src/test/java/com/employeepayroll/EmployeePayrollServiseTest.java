@@ -17,7 +17,7 @@ public class EmployeePayrollServiseTest
     @Test
     public void givenPathCheckedThenConfirm() throws IOException
     {
-         //check file exists
+        //check file exists
         Path homePath = Paths.get(HOME);
         Assertions.assertTrue(Files.exists(homePath));
 
@@ -44,5 +44,14 @@ public class EmployeePayrollServiseTest
         Files.list(playPath).filter(Files::isRegularFile).forEach(System.out::println);
         Files.newDirectoryStream(playPath).forEach(System.out::println);
         Files.newDirectoryStream(playPath, path -> path.toFile().isFile() && path.toString().startsWith("temp")).forEach(System.out::println);
+    }
+
+    @Test
+    public void givenDirectoryWhenWatchedListTheActivities() throws IOException {
+        Path dir = Paths.get(HOME+ "/" + PLAY_WITH_NIO);
+        Files.list(dir).filter(Files::isRegularFile)
+                .forEach(System.out::println);
+        new EmployeeWatchServices(dir).processEvents();
+
     }
 }
