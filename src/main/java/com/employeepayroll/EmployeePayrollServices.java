@@ -14,7 +14,7 @@ public class EmployeePayrollServices
     private List<EmployeePayrollData> employeePayrollList;
     public EmployeePayrollServices() {}
 
-    public EmployeePayrollServices(List<EmployeePayrollData>employeePayrollDataList)
+    public EmployeePayrollServices(List<EmployeePayrollData>employeePayrollList)
     {
         this.employeePayrollList = employeePayrollList;
     }
